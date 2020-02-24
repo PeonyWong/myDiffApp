@@ -1,0 +1,8 @@
+{
+  "appId": "com.example.mydiffappname",
+  "appName": "myDiffApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
