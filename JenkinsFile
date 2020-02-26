@@ -23,12 +23,22 @@ pipeline {
     }
    }
 
-   stage('Add and copy iOS ') {
+   stage('Copy iOS') {
      steps {
-        sh 'npx cap add ios'
-        sh 'npx cap sync'
         sh 'npx cap copy'
      }
+  }
+
+  stage('Build with xcodebuild') {
+      steps {
+          sh 'xcodebuild -workspace App.xcworkspace -scheme App -sdk iphoneos clean build' 
+      }
+  }
+
+  stage('Archive with xcodebuild') {
+      steps {
+          sh 'xcodebuild -workspace App.xcworkspace -scheme App -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/App.xcarchive'
+      }
   }
 
  }
